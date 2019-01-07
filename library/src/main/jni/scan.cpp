@@ -24,11 +24,14 @@ vector<Point> getPoints(Mat image)
 {
     int width = image.size().width;
     int height = image.size().height;
-    double ratio = width / height;
+    double ratio = height / 500.0;
+    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "ratio %f",ratio);
     
     //Mat image_proc = image.clone();
     Mat image_proc;
-    resize(image,image_proc,Size((int)500*ratio,500));
+    resize(image,image_proc,Size(height/ratio,width/ratio));
+    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "resized to %d",image_proc.size().width);
+    
     vector<vector<Point> > squares;
     // blur will enhance edge detection
     Mat blurred(image_proc);
