@@ -62,11 +62,11 @@ public class ResultFragment extends Fragment {
         rotcButton.setOnClickListener(new ResultFragment.RotclockButtonClickListener());
 
         Bitmap bitmap = getBitmap();
-        transformed = bitmap;
+        transformed = ((ScanActivity) getActivity()).getBWBitmap(bitmap);
         rotoriginal = bitmap;
 
         //Bitmap bitmap = getBitmap();
-        setScannedImage(bitmap);
+        setScannedImage(transformed);
         doneButton = (Button) view.findViewById(R.id.doneButton);
         doneButton.setOnClickListener(new DoneButtonClickListener());
     }
