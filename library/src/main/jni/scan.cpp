@@ -24,7 +24,11 @@ vector<Point> getPoints(Mat image)
 {
     int width = image.size().width;
     int height = image.size().height;
-    Mat image_proc = image.clone();
+    double ratio = width / height;
+    
+    //Mat image_proc = image.clone();
+    Mat image_proc;
+    resize(image,image_proc,Size((int)500*ratio,500);
     vector<vector<Point> > squares;
     // blur will enhance edge detection
     Mat blurred(image_proc);
