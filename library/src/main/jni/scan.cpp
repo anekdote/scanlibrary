@@ -28,7 +28,8 @@ vector<Point> getPoints(Mat image)
     vector<vector<Point> > squares;
     // blur will enhance edge detection
     Mat blurred(image_proc);
-    medianBlur(image_proc, blurred, 9);
+    //medianBlur(image_proc, blurred, 9);
+    GaussianBlur(image_proc, 5, 0, blurred);
     
     Mat gray0(blurred.size(), CV_8U), gray;
     vector<vector<Point> > contours;
