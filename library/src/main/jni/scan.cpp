@@ -80,7 +80,11 @@ __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contours %d", contours.size()
                 // Note: absolute value of an area is used because
                 // area may be positive or negative - in accordance with the
                 // contour orientation
-                __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contour size %f", fabs(contourArea(Mat(approx))));
+                if (fabs(contourArea(Mat(approx))) > 1000) {
+                __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contour area size %f", fabs(contourArea(Mat(approx))));
+                __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contour point size %d", approx.size());
+                
+                }
                 if (approx.size() == 4 &&
                     fabs(contourArea(Mat(approx))) > 1000 &&
                     isContourConvex(Mat(approx)))
