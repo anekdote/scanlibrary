@@ -24,11 +24,19 @@ vector<Point> getPoints(Mat image)
 {
     int width = image.size().width;
     int height = image.size().height;
-    Mat image_proc = image.clone();
+    double ratio = height / 500.0;
+    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "ratio %f",ratio);
+    
+    //Mat image_proc = image.clone();
+    Mat image_proc;
+    resize(image,image_proc,Size(height/ratio,width/ratio));
+    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "resized to %d",image_proc.size().width);
+    
     vector<vector<Point> > squares;
     // blur will enhance edge detection
     Mat blurred(image_proc);
-    medianBlur(image_proc, blurred, 9);
+    //medianBlur(image_proc, blurred, 9);
+    GaussianBlur(image_proc, blurred , Size(5,5), 1.5, 1.5);
     
     Mat gray0(blurred.size(), CV_8U), gray;
     vector<vector<Point> > contours;
@@ -417,7 +425,6 @@ JNIEXPORT jfloatArray JNICALL Java_com_scanlibrary_ScanActivity_getPoints
     AndroidBitmap_unlockPixels(env, bitmap);
     return jArray;
 }
-
 
 
 
