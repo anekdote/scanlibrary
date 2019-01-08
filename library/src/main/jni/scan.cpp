@@ -39,7 +39,7 @@ vector<Point> getPoints(Mat image)
 
     cvtColor(image_proc, gray, COLOR_BGR2GRAY);
 
-    GaussianBlur(gray, image_proc, Size(5, 5), 0);
+    GaussianBlur(gray, image_proc, Size(9, 9), 0);
 
     Canny(image_proc, gray, 75, 200);
 
@@ -56,7 +56,7 @@ vector<Point> getPoints(Mat image)
     std::sort(contours.begin(), contours.end(), [](std::vector<cv::Point> &contour1, std::vector<cv::Point> &contour2) {
         double i = fabs(contourArea(cv::Mat(contour1)));
         double j = fabs(contourArea(cv::Mat(contour2)));
-        return (i < j);
+        return (i > j);
     });
 
     // Test contours
