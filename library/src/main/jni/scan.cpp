@@ -25,7 +25,7 @@ vector<Point> getPoints(Mat image)
 {
     int width = image.size().width;
     int height = image.size().height;
-    double ratio = height / 500.0;
+    double ratio = height / 1000.0;
     __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "ratio %f", ratio);
 
     //Mat image_proc = image.clone();
@@ -37,16 +37,24 @@ vector<Point> getPoints(Mat image)
 
     Mat gray(image_proc);
 
-    cvtColor(image_proc, gray, COLOR_BGR2GRAY);
+    //cvtColor(image_proc, gray, COLOR_BGR2GRAY);
+    vector<Mat> hsvPlane;
+    cvtColor(image_proc, gray, COLOR_BGR2HSV);
+    
+    split(gray,hsvPlane);
+    Mat s;
+    s = hsvPlane[1];
 
-    GaussianBlur(gray, image_proc, Size(5, 5), 0);
+    threshold(s, gray, 50, 255, THRESH_BINARY_INV);
 
-    Canny(image_proc, gray, 128, 256);
+    GaussianBlur(gray, image_proc, Size(9, 9), 0);
+
+    Canny(image_proc, gray, 10, 20,3);
     
     dilate(gray, gray, Mat(), Point(-1,-1));
 
     vector<vector<Point>> contours;
-    findContours(gray, contours, CV_RETR_LIST, CV_CHAIN_APPROX_SIMPLE);
+    findContours(gray, contours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
 
     __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contour size %d", contours.size());
     
