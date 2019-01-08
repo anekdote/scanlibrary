@@ -29,14 +29,14 @@ vector<Point> getPoints(Mat image)
     
     //Mat image_proc = image.clone();
     Mat image_proc;
-    resize(image,image_proc,Size(height/ratio,width/ratio));
+    resize(image,image_proc,Size(width/ratio,height/ratio));
     __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "resized to %d",image_proc.size().width);
     
     vector<vector<Point> > squares;
     // blur will enhance edge detection
     Mat blurred(image_proc);
     //medianBlur(image_proc, blurred, 9);
-    GaussianBlur(image_proc, blurred , Size(5,5), 1.5, 1.5);
+    GaussianBlur(image_proc, blurred , Size(3,3), 1.5, 1.5);
     
     Mat gray0(blurred.size(), CV_8U), gray;
     vector<vector<Point> > contours;
@@ -69,7 +69,7 @@ vector<Point> getPoints(Mat image)
             findContours(gray, contours, CV_RETR_LIST, CV_CHAIN_APPROX_SIMPLE);
             
             // Test contours
-            vector<Point> approx;
+            vector<Point> approx,tApprox;
             for (size_t i = 0; i < contours.size(); i++)
             {
                 // approximate contour with accuracy proportional
@@ -92,7 +92,13 @@ vector<Point> getPoints(Mat image)
                     }
                     
                     if (maxCosine < 0.3)
-                        squares.push_back(approx);
+                        for (int k=0; k<4; k++) {
+                            Point tp = approx[k];
+                            tp.x = tp.x * ratio;
+                            tp.y = tp.y * ratio;
+                            tApprox.push_back(tp);
+                        }
+                        squares.push_back(tApprox);
                 }
             }
         }
