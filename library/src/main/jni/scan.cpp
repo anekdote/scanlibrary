@@ -102,8 +102,9 @@ __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contours %d", contours.size()
                         squares.push_back(approx);*/
 
                     RotatedRect r = minAreaRect(approx);
-                    boxPoints(r,approx);
-                    squares.push_back(approx);
+                    vector<Point> sq;
+                    boxPoints(r,sq);
+                    squares.push_back(sq);
                 }
             }
         }
