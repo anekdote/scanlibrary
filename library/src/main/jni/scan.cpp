@@ -39,11 +39,11 @@ vector<Point> getPoints(Mat image)
 
     cvtColor(image_proc, gray, COLOR_BGR2GRAY);
 
-    GaussianBlur(gray, image_proc, Size(5, 5), 0);
+    GaussianBlur(gray, image_proc, Size(3, 3), 0);
 
-    Canny(image_proc, gray, 75, 200);
+    Canny(image_proc, gray, 128, 256);
     
-    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "edged to %d", gray.size().width);
+    dilate(gray, gray, Mat(), Point(-1,-1));
 
     vector<vector<Point>> contours;
     findContours(gray, contours, CV_RETR_LIST, CV_CHAIN_APPROX_SIMPLE);
@@ -53,23 +53,20 @@ vector<Point> getPoints(Mat image)
 
     __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contour size %d", contours.size());
     
-    std::sort(contours.begin(), contours.end(), []( std::vector<cv::Point>& contour1, std::vector<cv::Point>& contour2 ) {
-    double i = fabs( contourArea(cv::Mat(contour1)) );
-    double j = fabs( contourArea(cv::Mat(contour2)) );
-    return ( i > j );
-});
-
     // Test contours
     vector<Point> approx, tApprox;
     for (size_t i = 0; i < contours.size(); i++)
     {
         // approximate contour with accuracy proportional
         // to the contour perimeter
-        approxPolyDP(Mat(contours[i]), approx, arcLength(Mat(contours[i]), true) * 0.1, true);
+        approxPolyDP(Mat(contours[i]), approx, arcLength(Mat(contours[i]), true) * 0.05, true);
 
         // Note: absolute value of an area is used because
         // area may be positive or negative - in accordance with the
         // contour orientation
+        
+        __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "approx size", approx.size());
+        
         if (approx.size() == 4 &&
             fabs(contourArea(Mat(approx))) > 1000 &&
             isContourConvex(Mat(approx)))
