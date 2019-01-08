@@ -42,16 +42,28 @@ vector<Point> getPoints(Mat image)
     GaussianBlur(gray, image_proc, Size(5, 5), 0);
 
     Canny(image_proc, gray, 75, 200);
-    
+
     __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "edged to %d", gray.size().width);
 
     vector<vector<Point>> contours;
     findContours(gray, contours, CV_RETR_LIST, CV_CHAIN_APPROX_SIMPLE);
-    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "total contours %d", contours.size());
+
+    //if (contours.size() == 2) contours = contours[0]; //  v2.4 or v4 official
+    //if (contours.size() == 3) contours = contours[1]; // v3 or v4 pre
+
+    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contour size %d", contours.size());
+
+    std::sort(contours.begin(), contours.end(), [](std::vector<cv::Point> &contour1, std::vector<cv::Point> &contour2) {
+        double i = fabs(contourArea(cv::Mat(contour1)));
+        double j = fabs(contourArea(cv::Mat(contour2)));
+        return (i < j);
+    });
+
     // Test contours
     vector<Point> approx, tApprox;
     for (size_t i = 0; i < contours.size(); i++)
     {
+
         // approximate contour with accuracy proportional
         // to the contour perimeter
         approxPolyDP(Mat(contours[i]), approx, arcLength(Mat(contours[i]), true) * 0.02, true);
@@ -59,58 +71,25 @@ vector<Point> getPoints(Mat image)
         // Note: absolute value of an area is used because
         // area may be positive or negative - in accordance with the
         // contour orientation
-        if (approx.size() == 4 &&
-            fabs(contourArea(Mat(approx))) > 1000 &&
-            isContourConvex(Mat(approx)))
+        if (approx.size() == 4)
         {
-            double maxCosine = 0;
-
-            for (int j = 2; j < 5; j++)
+            for (int k = 0; k < 4; k++)
             {
-                double cosine = fabs(angle(approx[j % 4], approx[j - 2], approx[j - 1]));
-                maxCosine = MAX(maxCosine, cosine);
+                Point tp = approx[k];
+                tp.x = tp.x * ratio;
+                tp.y = tp.y * ratio;
+                tApprox.push_back(tp);
             }
-
-            if (maxCosine < 0.3)
-                for (int k = 0; k < 4; k++)
-                {
-                    Point tp = approx[k];
-                    tp.x = tp.x * ratio;
-                    tp.y = tp.y * ratio;
-                    tApprox.push_back(tp);
-                }
-            squares.push_back(tApprox);
+            return tApprox;
         }
     }
 
-    double largest_area = -1;
-    int largest_contour_index = 0;
-    for (int i = 0; i < squares.size(); i++)
-    {
-        double a = contourArea(squares[i], false);
-        if (a > largest_area)
-        {
-            largest_area = a;
-            largest_contour_index = i;
-        }
-    }
+    tApprox.push_back(Point(0, 0));
+    tApprox.push_back(Point(width, 0));
+    tApprox.push_back(Point(0, height));
+    tApprox.push_back(Point(width, height));
 
-    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "Scaning size() %d", squares.size());
-    vector<Point> points;
-    if (squares.size() > 0)
-    {
-        points = squares[largest_contour_index];
-    }
-    else
-    {
-        points.push_back(Point(0, 0));
-        points.push_back(Point(width, 0));
-        points.push_back(Point(0, height));
-        points.push_back(Point(width, height));
-    }
-
-    return points;
-
+    return tApprox;
 }
 
 Point2f computePoint(int p1, int p2)
