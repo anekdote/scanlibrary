@@ -25,7 +25,7 @@ vector<Point> getPoints(Mat image)
 {
     int width = image.size().width;
     int height = image.size().height;
-    double ratio = height / 1000.0;
+    double ratio = height / 200.0;
     __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "ratio %f", ratio);
 
     //Mat image_proc = image.clone();
@@ -39,7 +39,7 @@ vector<Point> getPoints(Mat image)
 
     cvtColor(image_proc, gray, COLOR_BGR2GRAY);
 
-    GaussianBlur(gray, image_proc, Size(9, 9), 0);
+    GaussianBlur(gray, image_proc, Size(3, 3), 0);
 
     Canny(image_proc, gray, 75, 200);
     
