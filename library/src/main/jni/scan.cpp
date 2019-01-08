@@ -47,7 +47,7 @@ vector<Point> getPoints(Mat image)
 
     vector<vector<Point>> contours;
     findContours(gray, contours, CV_RETR_LIST, CV_CHAIN_APPROX_SIMPLE);
-
+    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "total contours %d", contours.size());
     // Test contours
     vector<Point> approx, tApprox;
     for (size_t i = 0; i < contours.size(); i++)
