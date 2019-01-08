@@ -86,8 +86,9 @@ __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contours %d", contours.size()
                 
                 }
                 //if (approx.size() == 4 &&
-                if(    fabs(contourArea(Mat(approx))) > 1000 &&
-                    isContourConvex(Mat(approx)))
+                if(    fabs(contourArea(Mat(approx))) > 1000)
+                // &&
+                //    isContourConvex(Mat(approx)))
                 {
                     /*double maxCosine = 0;
 
