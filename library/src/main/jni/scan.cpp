@@ -39,7 +39,7 @@ vector<Point> getPoints(Mat image)
 
     cvtColor(image_proc, gray, COLOR_BGR2GRAY);
 
-    GaussianBlur(gray, image_proc, Size(3, 3), 0);
+    GaussianBlur(gray, image_proc, Size(5, 5), 0);
 
     Canny(image_proc, gray, 128, 256);
     
@@ -47,9 +47,6 @@ vector<Point> getPoints(Mat image)
 
     vector<vector<Point>> contours;
     findContours(gray, contours, CV_RETR_LIST, CV_CHAIN_APPROX_SIMPLE);
-
-    //if (contours.size() == 2) contours = contours[0]; //  v2.4 or v4 official
-    //if (contours.size() == 3) contours = contours[1]; // v3 or v4 pre
 
     __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contour size %d", contours.size());
     
@@ -72,8 +69,9 @@ vector<Point> getPoints(Mat image)
                     __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "approx %d : %d , %d", y,tp.x,tp.y);
                 }
 
+    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "approx area %d", fabs(contourArea(Mat(approx))));
         if (approx.size() == 4 &&
-            fabs(contourArea(Mat(approx))) > 1000 &&
+            fabs(contourArea(Mat(approx))) > 250 &&
             isContourConvex(Mat(approx)))
         {
             double maxCosine = 0;
