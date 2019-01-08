@@ -34,102 +34,99 @@ vector<Point> getPoints(Mat image)
     __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "resized to %d", image_proc.size().width);
 
     vector<vector<Point>> squares;
+    // blur will enhance edge detection
+    Mat blurred(image_proc);
+    medianBlur(image_proc, blurred, 9);
 
-    Mat gray(image_proc);
-
-    //cvtColor(image_proc, gray, COLOR_BGR2GRAY);
-    vector<Mat> hsvPlane;
-    cvtColor(image_proc, gray, COLOR_BGR2HSV);
-    
-    split(gray,hsvPlane);
-    Mat s;
-    s = hsvPlane[1];
-
-    threshold(s, gray, 50, 255, THRESH_BINARY_INV);
-
-    GaussianBlur(gray, image_proc, Size(9, 9), 0);
-
-    Canny(image_proc, gray, 10, 20,3);
-    
-    dilate(gray, gray, Mat(), Point(-1,-1));
-
+    Mat gray0(blurred.size(), CV_8U), gray;
     vector<vector<Point>> contours;
-    findContours(gray, contours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
 
-    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contour size %d", contours.size());
-    
-    // Test contours
-    vector<Point> approx, tApprox;
-    for (size_t i = 0; i < contours.size(); i++)
+    // find squares in every color plane of the image
+    for (int c = 0; c < 3; c++)
     {
-        // approximate contour with accuracy proportional
-        // to the contour perimeter
-        approxPolyDP(Mat(contours[i]), approx, arcLength(Mat(contours[i]), true) * 0.05, true);
+        int ch[] = {c, 0};
+        mixChannels(&blurred, 1, &gray0, 1, ch, 1);
 
-        // Note: absolute value of an area is used because
-        // area may be positive or negative - in accordance with the
-        // contour orientation
-        
-        __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "approx size %d", approx.size());
-        for (int y = 0; y < 4; y++)
-                {
-                    Point tp = approx[y];
-                    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "approx %d : %d , %d", y,tp.x,tp.y);
-                }
-
-    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "approx area %d", fabs(contourArea(Mat(approx))));
-        if (approx.size() == 4 &&
-            fabs(contourArea(Mat(approx))) > 250 &&
-            isContourConvex(Mat(approx)))
+        // try several threshold levels
+        const int threshold_level = 2;
+        for (int l = 0; l < threshold_level; l++)
         {
-            double maxCosine = 0;
-
-            for (int j = 2; j < 5; j++)
+            // Use Canny instead of zero threshold level!
+            // Canny helps to catch squares with gradient shading
+            if (l == 0)
             {
-                double cosine = fabs(angle(approx[j % 4], approx[j - 2], approx[j - 1]));
-                maxCosine = MAX(maxCosine, cosine);
+                Canny(gray0, gray, 10, 20, 3); //
+
+                // Dilate helps to remove potential holes between edge segments
+                dilate(gray, gray, Mat(), Point(-1, -1));
+            }
+            else
+            {
+                gray = gray0 >= (l + 1) * 255 / threshold_level;
             }
 
-            if (maxCosine < 0.3)
-                for (int k = 0; k < 4; k++)
+            // Find contours and store them in a list
+            findContours(gray, contours, CV_RETR_LIST, CV_CHAIN_APPROX_SIMPLE);
+
+__android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contours %d", contours.size());
+            // Test contours
+            vector<Point> approx;
+            for (size_t i = 0; i < contours.size(); i++)
+            {
+                // approximate contour with accuracy proportional
+                // to the contour perimeter
+                approxPolyDP(Mat(contours[i]), approx, arcLength(Mat(contours[i]), true) * 0.02, true);
+
+                // Note: absolute value of an area is used because
+                // area may be positive or negative - in accordance with the
+                // contour orientation
+                __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contour size %d", fabs(contourArea(Mat(approx))));
+                if (approx.size() == 4 &&
+                    fabs(contourArea(Mat(approx))) > 1000 &&
+                    isContourConvex(Mat(approx)))
                 {
-                    Point tp = approx[k];
-                    tp.x = tp.x * ratio;
-                    tp.y = tp.y * ratio;
-                    tApprox.push_back(tp);
+                    double maxCosine = 0;
+
+                    for (int j = 2; j < 5; j++)
+                    {
+                        double cosine = fabs(angle(approx[j % 4], approx[j - 2], approx[j - 1]));
+                        maxCosine = MAX(maxCosine, cosine);
+                    }
+
+                    if (maxCosine < 0.3)
+                        squares.push_back(approx);
                 }
-            squares.push_back(tApprox);
+            }
         }
-    }
 
-    double largest_area = -1;
-    int largest_contour_index = 0;
-    for (int i = 0; i < squares.size(); i++)
-    {
-        double a = contourArea(squares[i], false);
-        if (a > largest_area)
+        double largest_area = -1;
+        int largest_contour_index = 0;
+        for (int i = 0; i < squares.size(); i++)
         {
-            largest_area = a;
-            largest_contour_index = i;
+            double a = contourArea(squares[i], false);
+            if (a > largest_area)
+            {
+                largest_area = a;
+                largest_contour_index = i;
+            }
         }
-    }
 
-    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "Scaning size() %d", squares.size());
-    vector<Point> points;
-    if (squares.size() > 0)
-    {
-        points = squares[largest_contour_index];
-    }
-    else
-    {
-        points.push_back(Point(0, 0));
-        points.push_back(Point(width, 0));
-        points.push_back(Point(0, height));
-        points.push_back(Point(width, height));
-    }
+        __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "Scaning size() %d", squares.size());
+        vector<Point> points;
+        if (squares.size() > 0)
+        {
+            points = squares[largest_contour_index];
+        }
+        else
+        {
+            points.push_back(Point(0, 0));
+            points.push_back(Point(width, 0));
+            points.push_back(Point(0, height));
+            points.push_back(Point(width, height));
+        }
 
-    return points;
-
+        return points;
+    }
 }
 
 Point2f computePoint(int p1, int p2)
