@@ -42,7 +42,7 @@ vector<Point> getPoints(Mat image)
     GaussianBlur(gray, image_proc, Size(5, 5), 0);
 
     Canny(image_proc, gray, 75, 200);
-
+    
     __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "edged to %d", gray.size().width);
 
     vector<vector<Point>> contours;
