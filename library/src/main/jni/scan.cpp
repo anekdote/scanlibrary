@@ -85,11 +85,11 @@ __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contours %d", contours.size()
                 __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contour point size %d", approx.size());
                 
                 }
-                if (approx.size() == 4 &&
-                    fabs(contourArea(Mat(approx))) > 1000 &&
+                //if (approx.size() == 4 &&
+                if(    fabs(contourArea(Mat(approx))) > 1000 &&
                     isContourConvex(Mat(approx)))
                 {
-                    double maxCosine = 0;
+                    /*double maxCosine = 0;
 
                     for (int j = 2; j < 5; j++)
                     {
@@ -98,7 +98,11 @@ __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contours %d", contours.size()
                     }
 
                     if (maxCosine < 0.3)
-                        squares.push_back(approx);
+                        squares.push_back(approx);*/
+
+                    RotatedRect r = minAreaRect(approx);
+                    boxPoints(r,approx);
+                    squares.push_back(approx);
                 }
             }
         }
