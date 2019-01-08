@@ -65,8 +65,13 @@ vector<Point> getPoints(Mat image)
         // area may be positive or negative - in accordance with the
         // contour orientation
         
-        __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "approx size", approx.size());
-        
+        __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "approx size %d", approx.size());
+        for (int y = 0; y < 4; y++)
+                {
+                    Point tp = approx[y];
+                    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "approx %d : %d , %d", y,tp.x,tp.y);
+                }
+
         if (approx.size() == 4 &&
             fabs(contourArea(Mat(approx))) > 1000 &&
             isContourConvex(Mat(approx)))
