@@ -29,25 +29,27 @@ vector<Point> getPoints(Mat image)
     __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "ratio %f", ratio);
 
     //Mat image_proc = image.clone();
-    Mat image_proc;
-    resize(image, image_proc, Size(width / ratio, height / ratio));
-    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "resized to %d", image_proc.size().width);
-    
-    Mat gray, edge;
-    vector<vector<Point>> squares;
-    // blur will enhance edge detection
-    Mat blurred(image_proc);
-    GaussianBlur(image_proc, edge, Size(5, 5), 1.8);
+    Mat src1;
+    resize(image, src1, Size(width / ratio, height / ratio));
+    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "resized to %d", src1.size().width);
 
-    
+    Mat gray, edge, draw;
+    Mat blurred(src1);
+
+    GaussianBlur(src1, edge, Size(5, 5), 1.8);
     cvtColor(edge, gray, CV_BGR2GRAY);
 
     Canny(gray, edge, 50, 150, 3);
+
     vector<vector<Point>> contours;
     vector<Vec4i> hierarchy;
+    vector<vector<Point>> squares;
+    //findContours(temp, contours, RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
     findContours(edge, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0));
-    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "Contour size() %d", contours.size());
+    std::cout << "countours " << contours.size() << std::endl;
 
+    Mat drawing = Mat::zeros(edge.size(), CV_8UC3);
+    vector<Point> approx;
     for (int i = 0; i < contours.size(); i++)
     {
         convexHull(contours[i], contours[i]);
@@ -56,38 +58,38 @@ vector<Point> getPoints(Mat image)
         if (area > 15000)
         {
             std::cout << "countour points " << contours[i].size() << std::endl;
-            if (contours[i].size() == 4)
-                squares.push_back(contours[i]);
+            Scalar color = Scalar(255, 0, 255);
+            drawContours(drawing, contours, i, color, 2, 8, hierarchy, 0, Point());
         }
-
-        double largest_area = -1;
-        int largest_contour_index = 0;
-        for (int i = 0; i < squares.size(); i++)
-        {
-            double a = contourArea(squares[i], false);
-            if (a > largest_area)
-            {
-                largest_area = a;
-                largest_contour_index = i;
-            }
-        }
-
-        __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "Scaning size() %d", squares.size());
-        vector<Point> points;
-        if (squares.size() > 0)
-        {
-            points = squares[largest_contour_index];
-        }
-        else
-        {
-            points.push_back(Point(0, 0));
-            points.push_back(Point(width, 0));
-            points.push_back(Point(0, height));
-            points.push_back(Point(width, height));
-        }
-
-        return points;
     }
+
+    double largest_area = -1;
+    int largest_contour_index = 0;
+    for (int i = 0; i < squares.size(); i++)
+    {
+        double a = contourArea(squares[i], false);
+        if (a > largest_area)
+        {
+            largest_area = a;
+            largest_contour_index = i;
+        }
+    }
+
+    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "Scaning size() %d", squares.size());
+    vector<Point> points;
+    if (squares.size() > 0)
+    {
+        points = squares[largest_contour_index];
+    }
+    else
+    {
+        points.push_back(Point(0, 0));
+        points.push_back(Point(width, 0));
+        points.push_back(Point(0, height));
+        points.push_back(Point(width, height));
+    }
+
+    return points;
 }
 
 Point2f computePoint(int p1, int p2)
