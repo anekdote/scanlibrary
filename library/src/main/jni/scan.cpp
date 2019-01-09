@@ -37,7 +37,7 @@ vector<Point> getPoints(Mat image)
     // blur will enhance edge detection
     Mat blurred(image_proc);
     medianBlur(image_proc, blurred, 9);
-
+    
     Mat gray0(blurred.size(), CV_8U), gray;
     vector<vector<Point>> contours;
 
@@ -66,7 +66,7 @@ vector<Point> getPoints(Mat image)
             }
 
             // Find contours and store them in a list
-            findContours(gray, contours, CV_RETR_LIST, CV_CHAIN_APPROX_SIMPLE);
+            findContours(gray, contours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
 
             __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contours %d", contours.size());
             // Test contours
@@ -86,7 +86,7 @@ vector<Point> getPoints(Mat image)
                     __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contour point size %d", approx.size());
                 }
                 if (approx.size() == 4 &&
-                    fabs(contourArea(Mat(approx))) > 1000 &&
+                    fabs(contourArea(Mat(approx))) > 10000 &&
                     isContourConvex(Mat(approx)))
                 {
                     double maxCosine = 0;
