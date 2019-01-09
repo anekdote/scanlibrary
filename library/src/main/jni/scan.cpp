@@ -25,94 +25,39 @@ vector<Point> getPoints(Mat image)
 {
     int width = image.size().width;
     int height = image.size().height;
-    double ratio = height / 1000.0;
+    double ratio = width / 500.0;
     __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "ratio %f", ratio);
 
     //Mat image_proc = image.clone();
     Mat image_proc;
     resize(image, image_proc, Size(width / ratio, height / ratio));
     __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "resized to %d", image_proc.size().width);
-
+    
+    Mat gray, edge;
     vector<vector<Point>> squares;
     // blur will enhance edge detection
     Mat blurred(image_proc);
-    medianBlur(image_proc, blurred, 9);
+    GaussianBlur(image_proc, edge, Size(5, 5), 1.8);
+
     
-    Mat gray0(blurred.size(), CV_8U), gray;
+    cvtColor(edge, gray, CV_BGR2GRAY);
+
+    Canny(gray, edge, 50, 150, 3);
     vector<vector<Point>> contours;
+    vector<Vec4i> hierarchy;
+    findContours(edge, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0));
+    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "Contour size() %d", contours.size());
 
-    // find squares in every color plane of the image
-    for (int c = 0; c < 3; c++)
+    for (int i = 0; i < contours.size(); i++)
     {
-        int ch[] = {c, 0};
-        mixChannels(&blurred, 1, &gray0, 1, ch, 1);
-
-        // try several threshold levels
-        const int threshold_level = 2;
-        for (int l = 0; l < threshold_level; l++)
+        convexHull(contours[i], contours[i]);
+        float area = contourArea(Mat(contours[i]));
+        approxPolyDP(Mat(contours[i]), contours[i], arcLength(Mat(contours[i]), true) * 0.02, true);
+        if (area > 15000)
         {
-            // Use Canny instead of zero threshold level!
-            // Canny helps to catch squares with gradient shading
-            if (l == 0)
-            {
-                Canny(gray0, gray, 10, 20, 3); //
-
-                // Dilate helps to remove potential holes between edge segments
-                dilate(gray, gray, Mat(), Point(-1, -1));
-            }
-            else
-            {
-                gray = gray0 >= (l + 1) * 255 / threshold_level;
-            }
-
-            // Find contours and store them in a list
-            findContours(gray, contours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
-
-            __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contours %d", contours.size());
-            // Test contours
-            vector<Point> approx, tApprox;
-            for (size_t i = 0; i < contours.size(); i++)
-            {
-                // approximate contour with accuracy proportional
-                // to the contour perimeter
-                approxPolyDP(Mat(contours[i]), approx, arcLength(Mat(contours[i]), true) * 0.05, true);
-
-                // Note: absolute value of an area is used because
-                // area may be positive or negative - in accordance with the
-                // contour orientation
-                if (fabs(contourArea(Mat(approx))) > 10000)
-                {
-                    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contour area size %f", fabs(contourArea(Mat(approx))));
-                    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contour point size %d", approx.size());
-                    for (int m =0; m < approx.size(); m++) {
-                        Point p = approx[m];
-                        __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contour point %d [%f,%f] ", m,p.x,p.y);
-                    }
-                }
-                if (approx.size() == 4 &&
-                    fabs(contourArea(Mat(approx))) > 10000 &&
-                    isContourConvex(Mat(approx)))
-                {
-                    double maxCosine = 0;
-
-                    for (int j = 2; j < 5; j++)
-                    {
-                        double cosine = fabs(angle(approx[j % 4], approx[j - 2], approx[j - 1]));
-                        maxCosine = MAX(maxCosine, cosine);
-                    }
-                    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "match rectangle %f", maxCosine);
-
-                    if (maxCosine < 0.3)
-                        for (int k = 0; k < 4; k++)
-                        {
-                            Point tp = approx[k];
-                            tp.x = tp.x * ratio;
-                            tp.y = tp.y * ratio;
-                            tApprox.push_back(tp);
-                        }
-                    squares.push_back(tApprox);
-                }
-            }
+            std::cout << "countour points " << contours[i].size() << std::endl;
+            if (contours[i].size() == 4)
+                squares.push_back(contours[i]);
         }
 
         double largest_area = -1;
