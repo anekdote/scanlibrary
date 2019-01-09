@@ -75,15 +75,19 @@ vector<Point> getPoints(Mat image)
             {
                 // approximate contour with accuracy proportional
                 // to the contour perimeter
-                approxPolyDP(Mat(contours[i]), approx, arcLength(Mat(contours[i]), true) * 0.06, true);
+                approxPolyDP(Mat(contours[i]), approx, arcLength(Mat(contours[i]), true) * 0.05, true);
 
                 // Note: absolute value of an area is used because
                 // area may be positive or negative - in accordance with the
                 // contour orientation
-                if (fabs(contourArea(Mat(approx))) > 1000)
+                if (fabs(contourArea(Mat(approx))) > 10000)
                 {
                     __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contour area size %f", fabs(contourArea(Mat(approx))));
                     __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contour point size %d", approx.size());
+                    for (int m =0; m < approx.size(); m++) {
+                        Point p = approx[m];
+                        __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contour point %d [%f,%f] ", m,p.x,p.y);
+                    }
                 }
                 if (approx.size() == 4 &&
                     fabs(contourArea(Mat(approx))) > 10000 &&
