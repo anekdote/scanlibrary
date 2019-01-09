@@ -68,9 +68,9 @@ vector<Point> getPoints(Mat image)
             // Find contours and store them in a list
             findContours(gray, contours, CV_RETR_LIST, CV_CHAIN_APPROX_SIMPLE);
 
-__android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contours %d", contours.size());
+            __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contours %d", contours.size());
             // Test contours
-            vector<Point> approx;
+            vector<Point> approx, tApprox;
             for (size_t i = 0; i < contours.size(); i++)
             {
                 // approximate contour with accuracy proportional
@@ -80,10 +80,10 @@ __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contours %d", contours.size()
                 // Note: absolute value of an area is used because
                 // area may be positive or negative - in accordance with the
                 // contour orientation
-                if (fabs(contourArea(Mat(approx))) > 1000) {
-                __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contour area size %f", fabs(contourArea(Mat(approx))));
-                __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contour point size %d", approx.size());
-                
+                if (fabs(contourArea(Mat(approx))) > 1000)
+                {
+                    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contour area size %f", fabs(contourArea(Mat(approx))));
+                    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contour point size %d", approx.size());
                 }
                 if (approx.size() == 4 &&
                     fabs(contourArea(Mat(approx))) > 1000 &&
@@ -96,9 +96,17 @@ __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contours %d", contours.size()
                         double cosine = fabs(angle(approx[j % 4], approx[j - 2], approx[j - 1]));
                         maxCosine = MAX(maxCosine, cosine);
                     }
+                    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "match rectangle %f", maxCosine);
 
                     if (maxCosine < 0.3)
-                        squares.push_back(approx);
+                        for (int k = 0; k < 4; k++)
+                        {
+                            Point tp = approx[k];
+                            tp.x = tp.x * ratio;
+                            tp.y = tp.y * ratio;
+                            tApprox.push_back(tp);
+                        }
+                    squares.push_back(tApprox);
                 }
             }
         }
