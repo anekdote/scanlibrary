@@ -46,8 +46,8 @@ vector<Point> getPoints(Mat image)
     vector<vector<Point>> squares;
     //findContours(temp, contours, RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
     findContours(edge, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0));
-    std::cout << "countours " << contours.size() << std::endl;
-
+    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contours  %d", contours.size());
+    
     Mat drawing = Mat::zeros(edge.size(), CV_8UC3);
     vector<Point> approx;
     for (int i = 0; i < contours.size(); i++)
@@ -57,9 +57,8 @@ vector<Point> getPoints(Mat image)
         approxPolyDP(Mat(contours[i]), contours[i], arcLength(Mat(contours[i]), true) * 0.02, true);
         if (area > 15000)
         {
-            std::cout << "countour points " << contours[i].size() << std::endl;
-            Scalar color = Scalar(255, 0, 255);
-            drawContours(drawing, contours, i, color, 2, 8, hierarchy, 0, Point());
+            __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contour points %d", contours[i].size());
+            squares.push_back(contours[i]);
         }
     }
 
