@@ -78,6 +78,13 @@ vector<Point> getPoints(Mat image)
     vector<Point> points;
     if (squares.size() > 0)
     {
+        for (int k = 0; k < 4; k++)
+        {
+            Point tp = squares[largest_contour_index][k];
+            tp.x = tp.x * ratio;
+            tp.y = tp.y * ratio;
+            points.push_back(tp);
+        }
         points = squares[largest_contour_index];
     }
     else
