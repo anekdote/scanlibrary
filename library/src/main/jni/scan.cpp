@@ -55,7 +55,7 @@ vector<Point> getPoints(Mat image)
         convexHull(contours[i], contours[i]);
         float area = contourArea(Mat(contours[i]));
         approxPolyDP(Mat(contours[i]), contours[i], arcLength(Mat(contours[i]), true) * 0.02, true);
-        if (area > 15000)
+        if (area > 15000 && contours[i].size() == 4)
         {
             __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contour points %d", contours[i].size());
             squares.push_back(contours[i]);
