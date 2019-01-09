@@ -75,7 +75,7 @@ vector<Point> getPoints(Mat image)
             {
                 // approximate contour with accuracy proportional
                 // to the contour perimeter
-                approxPolyDP(Mat(contours[i]), approx, arcLength(Mat(contours[i]), true) * 0.07, true);
+                approxPolyDP(Mat(contours[i]), approx, arcLength(Mat(contours[i]), true) * 0.06, true);
 
                 // Note: absolute value of an area is used because
                 // area may be positive or negative - in accordance with the
