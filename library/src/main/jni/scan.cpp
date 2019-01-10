@@ -42,10 +42,8 @@ vector<Point> getPoints(Mat image)
     vector<vector<Point> > contours;
     vector<Vec4i> hierarchy;
     vector<vector<Point> > squares;
-    //findContours(temp, contours, RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
     findContours(edge, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0));
 
-    Mat drawing = Mat::zeros(edge.size(), CV_8UC3);
     vector<Point> approx;
     for (int i = 0; i < contours.size(); i++)
     {
@@ -59,7 +57,7 @@ vector<Point> getPoints(Mat image)
             squares.push_back(contours[i]);
         }
     }
-//displayContoursOnMat(contours,src1);
+     __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "got squares %d",squares.size());
     double largest_area = -1;
     int largest_contour_index = 0;
     for (int i = 0; i < squares.size(); i++)
