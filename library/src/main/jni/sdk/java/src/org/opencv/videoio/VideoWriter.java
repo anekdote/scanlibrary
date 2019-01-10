@@ -1,4 +1,3 @@
-
 //
 // This file is auto-generated. Please don't modify it!
 //
@@ -10,21 +9,49 @@ import org.opencv.core.Size;
 
 // C++: class VideoWriter
 //javadoc: VideoWriter
+
 public class VideoWriter {
 
     protected final long nativeObj;
     protected VideoWriter(long addr) { nativeObj = addr; }
 
+    public long getNativeObjAddr() { return nativeObj; }
+
+    // internal usage only
+    public static VideoWriter __fromPtr__(long addr) { return new VideoWriter(addr); }
 
     //
-    // C++:   VideoWriter(String filename, int fourcc, double fps, Size frameSize, bool isColor = true)
+    // C++:   cv::VideoWriter::VideoWriter(String filename, int apiPreference, int fourcc, double fps, Size frameSize, bool isColor = true)
+    //
+
+    //javadoc: VideoWriter::VideoWriter(filename, apiPreference, fourcc, fps, frameSize, isColor)
+    public   VideoWriter(String filename, int apiPreference, int fourcc, double fps, Size frameSize, boolean isColor)
+    {
+        
+        nativeObj = VideoWriter_0(filename, apiPreference, fourcc, fps, frameSize.width, frameSize.height, isColor);
+        
+        return;
+    }
+
+    //javadoc: VideoWriter::VideoWriter(filename, apiPreference, fourcc, fps, frameSize)
+    public   VideoWriter(String filename, int apiPreference, int fourcc, double fps, Size frameSize)
+    {
+        
+        nativeObj = VideoWriter_1(filename, apiPreference, fourcc, fps, frameSize.width, frameSize.height);
+        
+        return;
+    }
+
+
+    //
+    // C++:   cv::VideoWriter::VideoWriter(String filename, int fourcc, double fps, Size frameSize, bool isColor = true)
     //
 
     //javadoc: VideoWriter::VideoWriter(filename, fourcc, fps, frameSize, isColor)
     public   VideoWriter(String filename, int fourcc, double fps, Size frameSize, boolean isColor)
     {
         
-        nativeObj = VideoWriter_0(filename, fourcc, fps, frameSize.width, frameSize.height, isColor);
+        nativeObj = VideoWriter_2(filename, fourcc, fps, frameSize.width, frameSize.height, isColor);
         
         return;
     }
@@ -33,28 +60,28 @@ public class VideoWriter {
     public   VideoWriter(String filename, int fourcc, double fps, Size frameSize)
     {
         
-        nativeObj = VideoWriter_1(filename, fourcc, fps, frameSize.width, frameSize.height);
+        nativeObj = VideoWriter_3(filename, fourcc, fps, frameSize.width, frameSize.height);
         
         return;
     }
 
 
     //
-    // C++:   VideoWriter()
+    // C++:   cv::VideoWriter::VideoWriter()
     //
 
     //javadoc: VideoWriter::VideoWriter()
     public   VideoWriter()
     {
         
-        nativeObj = VideoWriter_2();
+        nativeObj = VideoWriter_4();
         
         return;
     }
 
 
     //
-    // C++:  bool isOpened()
+    // C++:  bool cv::VideoWriter::isOpened()
     //
 
     //javadoc: VideoWriter::isOpened()
@@ -68,14 +95,37 @@ public class VideoWriter {
 
 
     //
-    // C++:  bool open(String filename, int fourcc, double fps, Size frameSize, bool isColor = true)
+    // C++:  bool cv::VideoWriter::open(String filename, int apiPreference, int fourcc, double fps, Size frameSize, bool isColor = true)
+    //
+
+    //javadoc: VideoWriter::open(filename, apiPreference, fourcc, fps, frameSize, isColor)
+    public  boolean open(String filename, int apiPreference, int fourcc, double fps, Size frameSize, boolean isColor)
+    {
+        
+        boolean retVal = open_0(nativeObj, filename, apiPreference, fourcc, fps, frameSize.width, frameSize.height, isColor);
+        
+        return retVal;
+    }
+
+    //javadoc: VideoWriter::open(filename, apiPreference, fourcc, fps, frameSize)
+    public  boolean open(String filename, int apiPreference, int fourcc, double fps, Size frameSize)
+    {
+        
+        boolean retVal = open_1(nativeObj, filename, apiPreference, fourcc, fps, frameSize.width, frameSize.height);
+        
+        return retVal;
+    }
+
+
+    //
+    // C++:  bool cv::VideoWriter::open(String filename, int fourcc, double fps, Size frameSize, bool isColor = true)
     //
 
     //javadoc: VideoWriter::open(filename, fourcc, fps, frameSize, isColor)
     public  boolean open(String filename, int fourcc, double fps, Size frameSize, boolean isColor)
     {
         
-        boolean retVal = open_0(nativeObj, filename, fourcc, fps, frameSize.width, frameSize.height, isColor);
+        boolean retVal = open_2(nativeObj, filename, fourcc, fps, frameSize.width, frameSize.height, isColor);
         
         return retVal;
     }
@@ -84,14 +134,14 @@ public class VideoWriter {
     public  boolean open(String filename, int fourcc, double fps, Size frameSize)
     {
         
-        boolean retVal = open_1(nativeObj, filename, fourcc, fps, frameSize.width, frameSize.height);
+        boolean retVal = open_3(nativeObj, filename, fourcc, fps, frameSize.width, frameSize.height);
         
         return retVal;
     }
 
 
     //
-    // C++:  bool set(int propId, double value)
+    // C++:  bool cv::VideoWriter::set(int propId, double value)
     //
 
     //javadoc: VideoWriter::set(propId, value)
@@ -105,7 +155,7 @@ public class VideoWriter {
 
 
     //
-    // C++:  double get(int propId)
+    // C++:  double cv::VideoWriter::get(int propId)
     //
 
     //javadoc: VideoWriter::get(propId)
@@ -119,7 +169,7 @@ public class VideoWriter {
 
 
     //
-    // C++: static int fourcc(char c1, char c2, char c3, char c4)
+    // C++: static int cv::VideoWriter::fourcc(char c1, char c2, char c3, char c4)
     //
 
     //javadoc: VideoWriter::fourcc(c1, c2, c3, c4)
@@ -133,7 +183,7 @@ public class VideoWriter {
 
 
     //
-    // C++:  void release()
+    // C++:  void cv::VideoWriter::release()
     //
 
     //javadoc: VideoWriter::release()
@@ -147,7 +197,7 @@ public class VideoWriter {
 
 
     //
-    // C++:  void write(Mat image)
+    // C++:  void cv::VideoWriter::write(Mat image)
     //
 
     //javadoc: VideoWriter::write(image)
@@ -167,33 +217,41 @@ public class VideoWriter {
 
 
 
-    // C++:   VideoWriter(String filename, int fourcc, double fps, Size frameSize, bool isColor = true)
-    private static native long VideoWriter_0(String filename, int fourcc, double fps, double frameSize_width, double frameSize_height, boolean isColor);
-    private static native long VideoWriter_1(String filename, int fourcc, double fps, double frameSize_width, double frameSize_height);
+    // C++:   cv::VideoWriter::VideoWriter(String filename, int apiPreference, int fourcc, double fps, Size frameSize, bool isColor = true)
+    private static native long VideoWriter_0(String filename, int apiPreference, int fourcc, double fps, double frameSize_width, double frameSize_height, boolean isColor);
+    private static native long VideoWriter_1(String filename, int apiPreference, int fourcc, double fps, double frameSize_width, double frameSize_height);
 
-    // C++:   VideoWriter()
-    private static native long VideoWriter_2();
+    // C++:   cv::VideoWriter::VideoWriter(String filename, int fourcc, double fps, Size frameSize, bool isColor = true)
+    private static native long VideoWriter_2(String filename, int fourcc, double fps, double frameSize_width, double frameSize_height, boolean isColor);
+    private static native long VideoWriter_3(String filename, int fourcc, double fps, double frameSize_width, double frameSize_height);
 
-    // C++:  bool isOpened()
+    // C++:   cv::VideoWriter::VideoWriter()
+    private static native long VideoWriter_4();
+
+    // C++:  bool cv::VideoWriter::isOpened()
     private static native boolean isOpened_0(long nativeObj);
 
-    // C++:  bool open(String filename, int fourcc, double fps, Size frameSize, bool isColor = true)
-    private static native boolean open_0(long nativeObj, String filename, int fourcc, double fps, double frameSize_width, double frameSize_height, boolean isColor);
-    private static native boolean open_1(long nativeObj, String filename, int fourcc, double fps, double frameSize_width, double frameSize_height);
+    // C++:  bool cv::VideoWriter::open(String filename, int apiPreference, int fourcc, double fps, Size frameSize, bool isColor = true)
+    private static native boolean open_0(long nativeObj, String filename, int apiPreference, int fourcc, double fps, double frameSize_width, double frameSize_height, boolean isColor);
+    private static native boolean open_1(long nativeObj, String filename, int apiPreference, int fourcc, double fps, double frameSize_width, double frameSize_height);
 
-    // C++:  bool set(int propId, double value)
+    // C++:  bool cv::VideoWriter::open(String filename, int fourcc, double fps, Size frameSize, bool isColor = true)
+    private static native boolean open_2(long nativeObj, String filename, int fourcc, double fps, double frameSize_width, double frameSize_height, boolean isColor);
+    private static native boolean open_3(long nativeObj, String filename, int fourcc, double fps, double frameSize_width, double frameSize_height);
+
+    // C++:  bool cv::VideoWriter::set(int propId, double value)
     private static native boolean set_0(long nativeObj, int propId, double value);
 
-    // C++:  double get(int propId)
+    // C++:  double cv::VideoWriter::get(int propId)
     private static native double get_0(long nativeObj, int propId);
 
-    // C++: static int fourcc(char c1, char c2, char c3, char c4)
+    // C++: static int cv::VideoWriter::fourcc(char c1, char c2, char c3, char c4)
     private static native int fourcc_0(char c1, char c2, char c3, char c4);
 
-    // C++:  void release()
+    // C++:  void cv::VideoWriter::release()
     private static native void release_0(long nativeObj);
 
-    // C++:  void write(Mat image)
+    // C++:  void cv::VideoWriter::write(Mat image)
     private static native void write_0(long nativeObj, long image_nativeObj);
 
     // native support for java finalize()

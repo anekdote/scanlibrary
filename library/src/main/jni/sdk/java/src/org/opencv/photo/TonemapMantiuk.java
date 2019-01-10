@@ -1,20 +1,22 @@
-
 //
 // This file is auto-generated. Please don't modify it!
 //
 package org.opencv.photo;
 
-
+import org.opencv.photo.Tonemap;
 
 // C++: class TonemapMantiuk
 //javadoc: TonemapMantiuk
+
 public class TonemapMantiuk extends Tonemap {
 
     protected TonemapMantiuk(long addr) { super(addr); }
 
+    // internal usage only
+    public static TonemapMantiuk __fromPtr__(long addr) { return new TonemapMantiuk(addr); }
 
     //
-    // C++:  float getSaturation()
+    // C++:  float cv::TonemapMantiuk::getSaturation()
     //
 
     //javadoc: TonemapMantiuk::getSaturation()
@@ -28,7 +30,7 @@ public class TonemapMantiuk extends Tonemap {
 
 
     //
-    // C++:  float getScale()
+    // C++:  float cv::TonemapMantiuk::getScale()
     //
 
     //javadoc: TonemapMantiuk::getScale()
@@ -42,7 +44,7 @@ public class TonemapMantiuk extends Tonemap {
 
 
     //
-    // C++:  void setSaturation(float saturation)
+    // C++:  void cv::TonemapMantiuk::setSaturation(float saturation)
     //
 
     //javadoc: TonemapMantiuk::setSaturation(saturation)
@@ -56,7 +58,7 @@ public class TonemapMantiuk extends Tonemap {
 
 
     //
-    // C++:  void setScale(float scale)
+    // C++:  void cv::TonemapMantiuk::setScale(float scale)
     //
 
     //javadoc: TonemapMantiuk::setScale(scale)
@@ -76,16 +78,16 @@ public class TonemapMantiuk extends Tonemap {
 
 
 
-    // C++:  float getSaturation()
+    // C++:  float cv::TonemapMantiuk::getSaturation()
     private static native float getSaturation_0(long nativeObj);
 
-    // C++:  float getScale()
+    // C++:  float cv::TonemapMantiuk::getScale()
     private static native float getScale_0(long nativeObj);
 
-    // C++:  void setSaturation(float saturation)
+    // C++:  void cv::TonemapMantiuk::setSaturation(float saturation)
     private static native void setSaturation_0(long nativeObj, float saturation);
 
-    // C++:  void setScale(float scale)
+    // C++:  void cv::TonemapMantiuk::setScale(float scale)
     private static native void setScale_0(long nativeObj, float scale);
 
     // native support for java finalize()

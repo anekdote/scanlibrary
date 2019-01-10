@@ -1,20 +1,23 @@
-
 //
 // This file is auto-generated. Please don't modify it!
 //
 package org.opencv.photo;
 
 import org.opencv.core.Mat;
+import org.opencv.photo.CalibrateCRF;
 
 // C++: class CalibrateRobertson
 //javadoc: CalibrateRobertson
+
 public class CalibrateRobertson extends CalibrateCRF {
 
     protected CalibrateRobertson(long addr) { super(addr); }
 
+    // internal usage only
+    public static CalibrateRobertson __fromPtr__(long addr) { return new CalibrateRobertson(addr); }
 
     //
-    // C++:  Mat getRadiance()
+    // C++:  Mat cv::CalibrateRobertson::getRadiance()
     //
 
     //javadoc: CalibrateRobertson::getRadiance()
@@ -28,7 +31,7 @@ public class CalibrateRobertson extends CalibrateCRF {
 
 
     //
-    // C++:  float getThreshold()
+    // C++:  float cv::CalibrateRobertson::getThreshold()
     //
 
     //javadoc: CalibrateRobertson::getThreshold()
@@ -42,7 +45,7 @@ public class CalibrateRobertson extends CalibrateCRF {
 
 
     //
-    // C++:  int getMaxIter()
+    // C++:  int cv::CalibrateRobertson::getMaxIter()
     //
 
     //javadoc: CalibrateRobertson::getMaxIter()
@@ -56,7 +59,7 @@ public class CalibrateRobertson extends CalibrateCRF {
 
 
     //
-    // C++:  void setMaxIter(int max_iter)
+    // C++:  void cv::CalibrateRobertson::setMaxIter(int max_iter)
     //
 
     //javadoc: CalibrateRobertson::setMaxIter(max_iter)
@@ -70,7 +73,7 @@ public class CalibrateRobertson extends CalibrateCRF {
 
 
     //
-    // C++:  void setThreshold(float threshold)
+    // C++:  void cv::CalibrateRobertson::setThreshold(float threshold)
     //
 
     //javadoc: CalibrateRobertson::setThreshold(threshold)
@@ -90,19 +93,19 @@ public class CalibrateRobertson extends CalibrateCRF {
 
 
 
-    // C++:  Mat getRadiance()
+    // C++:  Mat cv::CalibrateRobertson::getRadiance()
     private static native long getRadiance_0(long nativeObj);
 
-    // C++:  float getThreshold()
+    // C++:  float cv::CalibrateRobertson::getThreshold()
     private static native float getThreshold_0(long nativeObj);
 
-    // C++:  int getMaxIter()
+    // C++:  int cv::CalibrateRobertson::getMaxIter()
     private static native int getMaxIter_0(long nativeObj);
 
-    // C++:  void setMaxIter(int max_iter)
+    // C++:  void cv::CalibrateRobertson::setMaxIter(int max_iter)
     private static native void setMaxIter_0(long nativeObj, int max_iter);
 
-    // C++:  void setThreshold(float threshold)
+    // C++:  void cv::CalibrateRobertson::setThreshold(float threshold)
     private static native void setThreshold_0(long nativeObj, float threshold);
 
     // native support for java finalize()

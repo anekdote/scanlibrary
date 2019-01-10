@@ -1,21 +1,30 @@
-
 //
 // This file is auto-generated. Please don't modify it!
 //
 package org.opencv.ml;
 
+import java.lang.String;
+import java.util.ArrayList;
+import java.util.List;
 import org.opencv.core.Mat;
+import org.opencv.ml.TrainData;
+import org.opencv.utils.Converters;
 
 // C++: class TrainData
 //javadoc: TrainData
+
 public class TrainData {
 
     protected final long nativeObj;
     protected TrainData(long addr) { nativeObj = addr; }
 
+    public long getNativeObjAddr() { return nativeObj; }
+
+    // internal usage only
+    public static TrainData __fromPtr__(long addr) { return new TrainData(addr); }
 
     //
-    // C++:  Mat getCatMap()
+    // C++:  Mat cv::ml::TrainData::getCatMap()
     //
 
     //javadoc: TrainData::getCatMap()
@@ -29,7 +38,7 @@ public class TrainData {
 
 
     //
-    // C++:  Mat getCatOfs()
+    // C++:  Mat cv::ml::TrainData::getCatOfs()
     //
 
     //javadoc: TrainData::getCatOfs()
@@ -43,7 +52,7 @@ public class TrainData {
 
 
     //
-    // C++:  Mat getClassLabels()
+    // C++:  Mat cv::ml::TrainData::getClassLabels()
     //
 
     //javadoc: TrainData::getClassLabels()
@@ -57,7 +66,7 @@ public class TrainData {
 
 
     //
-    // C++:  Mat getDefaultSubstValues()
+    // C++:  Mat cv::ml::TrainData::getDefaultSubstValues()
     //
 
     //javadoc: TrainData::getDefaultSubstValues()
@@ -71,7 +80,7 @@ public class TrainData {
 
 
     //
-    // C++:  Mat getMissing()
+    // C++:  Mat cv::ml::TrainData::getMissing()
     //
 
     //javadoc: TrainData::getMissing()
@@ -85,7 +94,7 @@ public class TrainData {
 
 
     //
-    // C++:  Mat getNormCatResponses()
+    // C++:  Mat cv::ml::TrainData::getNormCatResponses()
     //
 
     //javadoc: TrainData::getNormCatResponses()
@@ -99,7 +108,7 @@ public class TrainData {
 
 
     //
-    // C++:  Mat getResponses()
+    // C++:  Mat cv::ml::TrainData::getResponses()
     //
 
     //javadoc: TrainData::getResponses()
@@ -113,7 +122,7 @@ public class TrainData {
 
 
     //
-    // C++:  Mat getSampleWeights()
+    // C++:  Mat cv::ml::TrainData::getSampleWeights()
     //
 
     //javadoc: TrainData::getSampleWeights()
@@ -127,7 +136,7 @@ public class TrainData {
 
 
     //
-    // C++:  Mat getSamples()
+    // C++:  Mat cv::ml::TrainData::getSamples()
     //
 
     //javadoc: TrainData::getSamples()
@@ -141,7 +150,21 @@ public class TrainData {
 
 
     //
-    // C++: static Mat getSubVector(Mat vec, Mat idx)
+    // C++: static Mat cv::ml::TrainData::getSubMatrix(Mat matrix, Mat idx, int layout)
+    //
+
+    //javadoc: TrainData::getSubMatrix(matrix, idx, layout)
+    public static Mat getSubMatrix(Mat matrix, Mat idx, int layout)
+    {
+        
+        Mat retVal = new Mat(getSubMatrix_0(matrix.nativeObj, idx.nativeObj, layout));
+        
+        return retVal;
+    }
+
+
+    //
+    // C++: static Mat cv::ml::TrainData::getSubVector(Mat vec, Mat idx)
     //
 
     //javadoc: TrainData::getSubVector(vec, idx)
@@ -155,7 +178,7 @@ public class TrainData {
 
 
     //
-    // C++:  Mat getTestNormCatResponses()
+    // C++:  Mat cv::ml::TrainData::getTestNormCatResponses()
     //
 
     //javadoc: TrainData::getTestNormCatResponses()
@@ -169,7 +192,7 @@ public class TrainData {
 
 
     //
-    // C++:  Mat getTestResponses()
+    // C++:  Mat cv::ml::TrainData::getTestResponses()
     //
 
     //javadoc: TrainData::getTestResponses()
@@ -183,7 +206,7 @@ public class TrainData {
 
 
     //
-    // C++:  Mat getTestSampleIdx()
+    // C++:  Mat cv::ml::TrainData::getTestSampleIdx()
     //
 
     //javadoc: TrainData::getTestSampleIdx()
@@ -197,7 +220,7 @@ public class TrainData {
 
 
     //
-    // C++:  Mat getTestSampleWeights()
+    // C++:  Mat cv::ml::TrainData::getTestSampleWeights()
     //
 
     //javadoc: TrainData::getTestSampleWeights()
@@ -211,7 +234,21 @@ public class TrainData {
 
 
     //
-    // C++:  Mat getTrainNormCatResponses()
+    // C++:  Mat cv::ml::TrainData::getTestSamples()
+    //
+
+    //javadoc: TrainData::getTestSamples()
+    public  Mat getTestSamples()
+    {
+        
+        Mat retVal = new Mat(getTestSamples_0(nativeObj));
+        
+        return retVal;
+    }
+
+
+    //
+    // C++:  Mat cv::ml::TrainData::getTrainNormCatResponses()
     //
 
     //javadoc: TrainData::getTrainNormCatResponses()
@@ -225,7 +262,7 @@ public class TrainData {
 
 
     //
-    // C++:  Mat getTrainResponses()
+    // C++:  Mat cv::ml::TrainData::getTrainResponses()
     //
 
     //javadoc: TrainData::getTrainResponses()
@@ -239,7 +276,7 @@ public class TrainData {
 
 
     //
-    // C++:  Mat getTrainSampleIdx()
+    // C++:  Mat cv::ml::TrainData::getTrainSampleIdx()
     //
 
     //javadoc: TrainData::getTrainSampleIdx()
@@ -253,7 +290,7 @@ public class TrainData {
 
 
     //
-    // C++:  Mat getTrainSampleWeights()
+    // C++:  Mat cv::ml::TrainData::getTrainSampleWeights()
     //
 
     //javadoc: TrainData::getTrainSampleWeights()
@@ -267,7 +304,7 @@ public class TrainData {
 
 
     //
-    // C++:  Mat getTrainSamples(int layout = ROW_SAMPLE, bool compressSamples = true, bool compressVars = true)
+    // C++:  Mat cv::ml::TrainData::getTrainSamples(int layout = ROW_SAMPLE, bool compressSamples = true, bool compressVars = true)
     //
 
     //javadoc: TrainData::getTrainSamples(layout, compressSamples, compressVars)
@@ -279,18 +316,36 @@ public class TrainData {
         return retVal;
     }
 
+    //javadoc: TrainData::getTrainSamples(layout, compressSamples)
+    public  Mat getTrainSamples(int layout, boolean compressSamples)
+    {
+        
+        Mat retVal = new Mat(getTrainSamples_1(nativeObj, layout, compressSamples));
+        
+        return retVal;
+    }
+
+    //javadoc: TrainData::getTrainSamples(layout)
+    public  Mat getTrainSamples(int layout)
+    {
+        
+        Mat retVal = new Mat(getTrainSamples_2(nativeObj, layout));
+        
+        return retVal;
+    }
+
     //javadoc: TrainData::getTrainSamples()
     public  Mat getTrainSamples()
     {
         
-        Mat retVal = new Mat(getTrainSamples_1(nativeObj));
+        Mat retVal = new Mat(getTrainSamples_3(nativeObj));
         
         return retVal;
     }
 
 
     //
-    // C++:  Mat getVarIdx()
+    // C++:  Mat cv::ml::TrainData::getVarIdx()
     //
 
     //javadoc: TrainData::getVarIdx()
@@ -304,7 +359,21 @@ public class TrainData {
 
 
     //
-    // C++:  Mat getVarType()
+    // C++:  Mat cv::ml::TrainData::getVarSymbolFlags()
+    //
+
+    //javadoc: TrainData::getVarSymbolFlags()
+    public  Mat getVarSymbolFlags()
+    {
+        
+        Mat retVal = new Mat(getVarSymbolFlags_0(nativeObj));
+        
+        return retVal;
+    }
+
+
+    //
+    // C++:  Mat cv::ml::TrainData::getVarType()
     //
 
     //javadoc: TrainData::getVarType()
@@ -318,14 +387,57 @@ public class TrainData {
 
 
     //
-    // C++: static Ptr_TrainData create(Mat samples, int layout, Mat responses, Mat varIdx = Mat(), Mat sampleIdx = Mat(), Mat sampleWeights = Mat(), Mat varType = Mat())
+    // C++: static Ptr_TrainData cv::ml::TrainData::create(Mat samples, int layout, Mat responses, Mat varIdx = Mat(), Mat sampleIdx = Mat(), Mat sampleWeights = Mat(), Mat varType = Mat())
     //
 
-    // Return type 'Ptr_TrainData' is not supported, skipping the function
+    //javadoc: TrainData::create(samples, layout, responses, varIdx, sampleIdx, sampleWeights, varType)
+    public static TrainData create(Mat samples, int layout, Mat responses, Mat varIdx, Mat sampleIdx, Mat sampleWeights, Mat varType)
+    {
+        
+        TrainData retVal = TrainData.__fromPtr__(create_0(samples.nativeObj, layout, responses.nativeObj, varIdx.nativeObj, sampleIdx.nativeObj, sampleWeights.nativeObj, varType.nativeObj));
+        
+        return retVal;
+    }
+
+    //javadoc: TrainData::create(samples, layout, responses, varIdx, sampleIdx, sampleWeights)
+    public static TrainData create(Mat samples, int layout, Mat responses, Mat varIdx, Mat sampleIdx, Mat sampleWeights)
+    {
+        
+        TrainData retVal = TrainData.__fromPtr__(create_1(samples.nativeObj, layout, responses.nativeObj, varIdx.nativeObj, sampleIdx.nativeObj, sampleWeights.nativeObj));
+        
+        return retVal;
+    }
+
+    //javadoc: TrainData::create(samples, layout, responses, varIdx, sampleIdx)
+    public static TrainData create(Mat samples, int layout, Mat responses, Mat varIdx, Mat sampleIdx)
+    {
+        
+        TrainData retVal = TrainData.__fromPtr__(create_2(samples.nativeObj, layout, responses.nativeObj, varIdx.nativeObj, sampleIdx.nativeObj));
+        
+        return retVal;
+    }
+
+    //javadoc: TrainData::create(samples, layout, responses, varIdx)
+    public static TrainData create(Mat samples, int layout, Mat responses, Mat varIdx)
+    {
+        
+        TrainData retVal = TrainData.__fromPtr__(create_3(samples.nativeObj, layout, responses.nativeObj, varIdx.nativeObj));
+        
+        return retVal;
+    }
+
+    //javadoc: TrainData::create(samples, layout, responses)
+    public static TrainData create(Mat samples, int layout, Mat responses)
+    {
+        
+        TrainData retVal = TrainData.__fromPtr__(create_4(samples.nativeObj, layout, responses.nativeObj));
+        
+        return retVal;
+    }
 
 
     //
-    // C++:  int getCatCount(int vi)
+    // C++:  int cv::ml::TrainData::getCatCount(int vi)
     //
 
     //javadoc: TrainData::getCatCount(vi)
@@ -339,7 +451,7 @@ public class TrainData {
 
 
     //
-    // C++:  int getLayout()
+    // C++:  int cv::ml::TrainData::getLayout()
     //
 
     //javadoc: TrainData::getLayout()
@@ -353,7 +465,7 @@ public class TrainData {
 
 
     //
-    // C++:  int getNAllVars()
+    // C++:  int cv::ml::TrainData::getNAllVars()
     //
 
     //javadoc: TrainData::getNAllVars()
@@ -367,7 +479,7 @@ public class TrainData {
 
 
     //
-    // C++:  int getNSamples()
+    // C++:  int cv::ml::TrainData::getNSamples()
     //
 
     //javadoc: TrainData::getNSamples()
@@ -381,7 +493,7 @@ public class TrainData {
 
 
     //
-    // C++:  int getNTestSamples()
+    // C++:  int cv::ml::TrainData::getNTestSamples()
     //
 
     //javadoc: TrainData::getNTestSamples()
@@ -395,7 +507,7 @@ public class TrainData {
 
 
     //
-    // C++:  int getNTrainSamples()
+    // C++:  int cv::ml::TrainData::getNTrainSamples()
     //
 
     //javadoc: TrainData::getNTrainSamples()
@@ -409,7 +521,7 @@ public class TrainData {
 
 
     //
-    // C++:  int getNVars()
+    // C++:  int cv::ml::TrainData::getNVars()
     //
 
     //javadoc: TrainData::getNVars()
@@ -423,7 +535,7 @@ public class TrainData {
 
 
     //
-    // C++:  int getResponseType()
+    // C++:  int cv::ml::TrainData::getResponseType()
     //
 
     //javadoc: TrainData::getResponseType()
@@ -437,7 +549,21 @@ public class TrainData {
 
 
     //
-    // C++:  void getSample(Mat varIdx, int sidx, float* buf)
+    // C++:  void cv::ml::TrainData::getNames(vector_String names)
+    //
+
+    //javadoc: TrainData::getNames(names)
+    public  void getNames(List<String> names)
+    {
+        
+        getNames_0(nativeObj, names);
+        
+        return;
+    }
+
+
+    //
+    // C++:  void cv::ml::TrainData::getSample(Mat varIdx, int sidx, float* buf)
     //
 
     //javadoc: TrainData::getSample(varIdx, sidx, buf)
@@ -451,7 +577,7 @@ public class TrainData {
 
 
     //
-    // C++:  void getValues(int vi, Mat sidx, float* values)
+    // C++:  void cv::ml::TrainData::getValues(int vi, Mat sidx, float* values)
     //
 
     //javadoc: TrainData::getValues(vi, sidx, values)
@@ -465,7 +591,7 @@ public class TrainData {
 
 
     //
-    // C++:  void setTrainTestSplit(int count, bool shuffle = true)
+    // C++:  void cv::ml::TrainData::setTrainTestSplit(int count, bool shuffle = true)
     //
 
     //javadoc: TrainData::setTrainTestSplit(count, shuffle)
@@ -488,7 +614,7 @@ public class TrainData {
 
 
     //
-    // C++:  void setTrainTestSplitRatio(double ratio, bool shuffle = true)
+    // C++:  void cv::ml::TrainData::setTrainTestSplitRatio(double ratio, bool shuffle = true)
     //
 
     //javadoc: TrainData::setTrainTestSplitRatio(ratio, shuffle)
@@ -511,7 +637,7 @@ public class TrainData {
 
 
     //
-    // C++:  void shuffleTrainTest()
+    // C++:  void cv::ml::TrainData::shuffleTrainTest()
     //
 
     //javadoc: TrainData::shuffleTrainTest()
@@ -531,109 +657,130 @@ public class TrainData {
 
 
 
-    // C++:  Mat getCatMap()
+    // C++:  Mat cv::ml::TrainData::getCatMap()
     private static native long getCatMap_0(long nativeObj);
 
-    // C++:  Mat getCatOfs()
+    // C++:  Mat cv::ml::TrainData::getCatOfs()
     private static native long getCatOfs_0(long nativeObj);
 
-    // C++:  Mat getClassLabels()
+    // C++:  Mat cv::ml::TrainData::getClassLabels()
     private static native long getClassLabels_0(long nativeObj);
 
-    // C++:  Mat getDefaultSubstValues()
+    // C++:  Mat cv::ml::TrainData::getDefaultSubstValues()
     private static native long getDefaultSubstValues_0(long nativeObj);
 
-    // C++:  Mat getMissing()
+    // C++:  Mat cv::ml::TrainData::getMissing()
     private static native long getMissing_0(long nativeObj);
 
-    // C++:  Mat getNormCatResponses()
+    // C++:  Mat cv::ml::TrainData::getNormCatResponses()
     private static native long getNormCatResponses_0(long nativeObj);
 
-    // C++:  Mat getResponses()
+    // C++:  Mat cv::ml::TrainData::getResponses()
     private static native long getResponses_0(long nativeObj);
 
-    // C++:  Mat getSampleWeights()
+    // C++:  Mat cv::ml::TrainData::getSampleWeights()
     private static native long getSampleWeights_0(long nativeObj);
 
-    // C++:  Mat getSamples()
+    // C++:  Mat cv::ml::TrainData::getSamples()
     private static native long getSamples_0(long nativeObj);
 
-    // C++: static Mat getSubVector(Mat vec, Mat idx)
+    // C++: static Mat cv::ml::TrainData::getSubMatrix(Mat matrix, Mat idx, int layout)
+    private static native long getSubMatrix_0(long matrix_nativeObj, long idx_nativeObj, int layout);
+
+    // C++: static Mat cv::ml::TrainData::getSubVector(Mat vec, Mat idx)
     private static native long getSubVector_0(long vec_nativeObj, long idx_nativeObj);
 
-    // C++:  Mat getTestNormCatResponses()
+    // C++:  Mat cv::ml::TrainData::getTestNormCatResponses()
     private static native long getTestNormCatResponses_0(long nativeObj);
 
-    // C++:  Mat getTestResponses()
+    // C++:  Mat cv::ml::TrainData::getTestResponses()
     private static native long getTestResponses_0(long nativeObj);
 
-    // C++:  Mat getTestSampleIdx()
+    // C++:  Mat cv::ml::TrainData::getTestSampleIdx()
     private static native long getTestSampleIdx_0(long nativeObj);
 
-    // C++:  Mat getTestSampleWeights()
+    // C++:  Mat cv::ml::TrainData::getTestSampleWeights()
     private static native long getTestSampleWeights_0(long nativeObj);
 
-    // C++:  Mat getTrainNormCatResponses()
+    // C++:  Mat cv::ml::TrainData::getTestSamples()
+    private static native long getTestSamples_0(long nativeObj);
+
+    // C++:  Mat cv::ml::TrainData::getTrainNormCatResponses()
     private static native long getTrainNormCatResponses_0(long nativeObj);
 
-    // C++:  Mat getTrainResponses()
+    // C++:  Mat cv::ml::TrainData::getTrainResponses()
     private static native long getTrainResponses_0(long nativeObj);
 
-    // C++:  Mat getTrainSampleIdx()
+    // C++:  Mat cv::ml::TrainData::getTrainSampleIdx()
     private static native long getTrainSampleIdx_0(long nativeObj);
 
-    // C++:  Mat getTrainSampleWeights()
+    // C++:  Mat cv::ml::TrainData::getTrainSampleWeights()
     private static native long getTrainSampleWeights_0(long nativeObj);
 
-    // C++:  Mat getTrainSamples(int layout = ROW_SAMPLE, bool compressSamples = true, bool compressVars = true)
+    // C++:  Mat cv::ml::TrainData::getTrainSamples(int layout = ROW_SAMPLE, bool compressSamples = true, bool compressVars = true)
     private static native long getTrainSamples_0(long nativeObj, int layout, boolean compressSamples, boolean compressVars);
-    private static native long getTrainSamples_1(long nativeObj);
+    private static native long getTrainSamples_1(long nativeObj, int layout, boolean compressSamples);
+    private static native long getTrainSamples_2(long nativeObj, int layout);
+    private static native long getTrainSamples_3(long nativeObj);
 
-    // C++:  Mat getVarIdx()
+    // C++:  Mat cv::ml::TrainData::getVarIdx()
     private static native long getVarIdx_0(long nativeObj);
 
-    // C++:  Mat getVarType()
+    // C++:  Mat cv::ml::TrainData::getVarSymbolFlags()
+    private static native long getVarSymbolFlags_0(long nativeObj);
+
+    // C++:  Mat cv::ml::TrainData::getVarType()
     private static native long getVarType_0(long nativeObj);
 
-    // C++:  int getCatCount(int vi)
+    // C++: static Ptr_TrainData cv::ml::TrainData::create(Mat samples, int layout, Mat responses, Mat varIdx = Mat(), Mat sampleIdx = Mat(), Mat sampleWeights = Mat(), Mat varType = Mat())
+    private static native long create_0(long samples_nativeObj, int layout, long responses_nativeObj, long varIdx_nativeObj, long sampleIdx_nativeObj, long sampleWeights_nativeObj, long varType_nativeObj);
+    private static native long create_1(long samples_nativeObj, int layout, long responses_nativeObj, long varIdx_nativeObj, long sampleIdx_nativeObj, long sampleWeights_nativeObj);
+    private static native long create_2(long samples_nativeObj, int layout, long responses_nativeObj, long varIdx_nativeObj, long sampleIdx_nativeObj);
+    private static native long create_3(long samples_nativeObj, int layout, long responses_nativeObj, long varIdx_nativeObj);
+    private static native long create_4(long samples_nativeObj, int layout, long responses_nativeObj);
+
+    // C++:  int cv::ml::TrainData::getCatCount(int vi)
     private static native int getCatCount_0(long nativeObj, int vi);
 
-    // C++:  int getLayout()
+    // C++:  int cv::ml::TrainData::getLayout()
     private static native int getLayout_0(long nativeObj);
 
-    // C++:  int getNAllVars()
+    // C++:  int cv::ml::TrainData::getNAllVars()
     private static native int getNAllVars_0(long nativeObj);
 
-    // C++:  int getNSamples()
+    // C++:  int cv::ml::TrainData::getNSamples()
     private static native int getNSamples_0(long nativeObj);
 
-    // C++:  int getNTestSamples()
+    // C++:  int cv::ml::TrainData::getNTestSamples()
     private static native int getNTestSamples_0(long nativeObj);
 
-    // C++:  int getNTrainSamples()
+    // C++:  int cv::ml::TrainData::getNTrainSamples()
     private static native int getNTrainSamples_0(long nativeObj);
 
-    // C++:  int getNVars()
+    // C++:  int cv::ml::TrainData::getNVars()
     private static native int getNVars_0(long nativeObj);
 
-    // C++:  int getResponseType()
+    // C++:  int cv::ml::TrainData::getResponseType()
     private static native int getResponseType_0(long nativeObj);
 
-    // C++:  void getSample(Mat varIdx, int sidx, float* buf)
+    // C++:  void cv::ml::TrainData::getNames(vector_String names)
+    private static native void getNames_0(long nativeObj, List<String> names);
+
+    // C++:  void cv::ml::TrainData::getSample(Mat varIdx, int sidx, float* buf)
     private static native void getSample_0(long nativeObj, long varIdx_nativeObj, int sidx, float buf);
 
-    // C++:  void getValues(int vi, Mat sidx, float* values)
+    // C++:  void cv::ml::TrainData::getValues(int vi, Mat sidx, float* values)
     private static native void getValues_0(long nativeObj, int vi, long sidx_nativeObj, float values);
 
-    // C++:  void setTrainTestSplit(int count, bool shuffle = true)
+    // C++:  void cv::ml::TrainData::setTrainTestSplit(int count, bool shuffle = true)
     private static native void setTrainTestSplit_0(long nativeObj, int count, boolean shuffle);
     private static native void setTrainTestSplit_1(long nativeObj, int count);
 
-    // C++:  void setTrainTestSplitRatio(double ratio, bool shuffle = true)
+    // C++:  void cv::ml::TrainData::setTrainTestSplitRatio(double ratio, bool shuffle = true)
     private static native void setTrainTestSplitRatio_0(long nativeObj, double ratio, boolean shuffle);
     private static native void setTrainTestSplitRatio_1(long nativeObj, double ratio);
 
-    // C++:  void shuffleTrainTest()
+    // C++:  void cv::ml::TrainData::shuffleTrainTest()
     private static native void shuffleTrainTest_0(long nativeObj);
 
     // native support for java finalize()

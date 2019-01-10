@@ -1,4 +1,3 @@
-
 //
 // This file is auto-generated. Please don't modify it!
 //
@@ -6,13 +5,17 @@ package org.opencv.ml;
 
 import org.opencv.core.Algorithm;
 import org.opencv.core.Mat;
+import org.opencv.ml.TrainData;
 
 // C++: class StatModel
 //javadoc: StatModel
+
 public class StatModel extends Algorithm {
 
     protected StatModel(long addr) { super(addr); }
 
+    // internal usage only
+    public static StatModel __fromPtr__(long addr) { return new StatModel(addr); }
 
     public static final int
             UPDATE_MODEL = 1,
@@ -22,7 +25,7 @@ public class StatModel extends Algorithm {
 
 
     //
-    // C++:  bool empty()
+    // C++:  bool cv::ml::StatModel::empty()
     //
 
     //javadoc: StatModel::empty()
@@ -36,7 +39,7 @@ public class StatModel extends Algorithm {
 
 
     //
-    // C++:  bool isClassifier()
+    // C++:  bool cv::ml::StatModel::isClassifier()
     //
 
     //javadoc: StatModel::isClassifier()
@@ -50,7 +53,7 @@ public class StatModel extends Algorithm {
 
 
     //
-    // C++:  bool isTrained()
+    // C++:  bool cv::ml::StatModel::isTrained()
     //
 
     //javadoc: StatModel::isTrained()
@@ -64,7 +67,7 @@ public class StatModel extends Algorithm {
 
 
     //
-    // C++:  bool train(Mat samples, int layout, Mat responses)
+    // C++:  bool cv::ml::StatModel::train(Mat samples, int layout, Mat responses)
     //
 
     //javadoc: StatModel::train(samples, layout, responses)
@@ -78,21 +81,44 @@ public class StatModel extends Algorithm {
 
 
     //
-    // C++:  bool train(Ptr_TrainData trainData, int flags = 0)
+    // C++:  bool cv::ml::StatModel::train(Ptr_TrainData trainData, int flags = 0)
     //
 
-    // Unknown type 'Ptr_TrainData' (I), skipping the function
+    //javadoc: StatModel::train(trainData, flags)
+    public  boolean train(TrainData trainData, int flags)
+    {
+        
+        boolean retVal = train_1(nativeObj, trainData.getNativeObjAddr(), flags);
+        
+        return retVal;
+    }
+
+    //javadoc: StatModel::train(trainData)
+    public  boolean train(TrainData trainData)
+    {
+        
+        boolean retVal = train_2(nativeObj, trainData.getNativeObjAddr());
+        
+        return retVal;
+    }
 
 
     //
-    // C++:  float calcError(Ptr_TrainData data, bool test, Mat& resp)
+    // C++:  float cv::ml::StatModel::calcError(Ptr_TrainData data, bool test, Mat& resp)
     //
 
-    // Unknown type 'Ptr_TrainData' (I), skipping the function
+    //javadoc: StatModel::calcError(data, test, resp)
+    public  float calcError(TrainData data, boolean test, Mat resp)
+    {
+        
+        float retVal = calcError_0(nativeObj, data.getNativeObjAddr(), test, resp.nativeObj);
+        
+        return retVal;
+    }
 
 
     //
-    // C++:  float predict(Mat samples, Mat& results = Mat(), int flags = 0)
+    // C++:  float cv::ml::StatModel::predict(Mat samples, Mat& results = Mat(), int flags = 0)
     //
 
     //javadoc: StatModel::predict(samples, results, flags)
@@ -104,18 +130,27 @@ public class StatModel extends Algorithm {
         return retVal;
     }
 
+    //javadoc: StatModel::predict(samples, results)
+    public  float predict(Mat samples, Mat results)
+    {
+        
+        float retVal = predict_1(nativeObj, samples.nativeObj, results.nativeObj);
+        
+        return retVal;
+    }
+
     //javadoc: StatModel::predict(samples)
     public  float predict(Mat samples)
     {
         
-        float retVal = predict_1(nativeObj, samples.nativeObj);
+        float retVal = predict_2(nativeObj, samples.nativeObj);
         
         return retVal;
     }
 
 
     //
-    // C++:  int getVarCount()
+    // C++:  int cv::ml::StatModel::getVarCount()
     //
 
     //javadoc: StatModel::getVarCount()
@@ -135,23 +170,31 @@ public class StatModel extends Algorithm {
 
 
 
-    // C++:  bool empty()
+    // C++:  bool cv::ml::StatModel::empty()
     private static native boolean empty_0(long nativeObj);
 
-    // C++:  bool isClassifier()
+    // C++:  bool cv::ml::StatModel::isClassifier()
     private static native boolean isClassifier_0(long nativeObj);
 
-    // C++:  bool isTrained()
+    // C++:  bool cv::ml::StatModel::isTrained()
     private static native boolean isTrained_0(long nativeObj);
 
-    // C++:  bool train(Mat samples, int layout, Mat responses)
+    // C++:  bool cv::ml::StatModel::train(Mat samples, int layout, Mat responses)
     private static native boolean train_0(long nativeObj, long samples_nativeObj, int layout, long responses_nativeObj);
 
-    // C++:  float predict(Mat samples, Mat& results = Mat(), int flags = 0)
-    private static native float predict_0(long nativeObj, long samples_nativeObj, long results_nativeObj, int flags);
-    private static native float predict_1(long nativeObj, long samples_nativeObj);
+    // C++:  bool cv::ml::StatModel::train(Ptr_TrainData trainData, int flags = 0)
+    private static native boolean train_1(long nativeObj, long trainData_nativeObj, int flags);
+    private static native boolean train_2(long nativeObj, long trainData_nativeObj);
 
-    // C++:  int getVarCount()
+    // C++:  float cv::ml::StatModel::calcError(Ptr_TrainData data, bool test, Mat& resp)
+    private static native float calcError_0(long nativeObj, long data_nativeObj, boolean test, long resp_nativeObj);
+
+    // C++:  float cv::ml::StatModel::predict(Mat samples, Mat& results = Mat(), int flags = 0)
+    private static native float predict_0(long nativeObj, long samples_nativeObj, long results_nativeObj, int flags);
+    private static native float predict_1(long nativeObj, long samples_nativeObj, long results_nativeObj);
+    private static native float predict_2(long nativeObj, long samples_nativeObj);
+
+    // C++:  int cv::ml::StatModel::getVarCount()
     private static native int getVarCount_0(long nativeObj);
 
     // native support for java finalize()
