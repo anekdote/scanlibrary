@@ -410,7 +410,7 @@ JNIEXPORT jfloatArray JNICALL Java_com_scanlibrary_ScanActivity_getPoints(JNIEnv
     }
 
     // init our output image
-    Mat mbgra(info.height, info.width, CV_8UC4, pixels);
+    Mat mbgra(info.height, info.width, CV_8UC3, pixels);
     vector<Point> img_pts = getPoints(mbgra);
 
     jfloatArray jArray = env->NewFloatArray(8);
