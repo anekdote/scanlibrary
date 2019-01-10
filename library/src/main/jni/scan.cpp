@@ -36,14 +36,14 @@ vector<Point> getPoints(Mat image)
     vector<vector<Point>> squares;
     // blur will enhance edge detection
     Mat blurred(image_proc);
-    //GaussianBlur(image_proc, blurred, Size(5, 5), 1.8);
-    medianBlur(image_proc, blurred, 9);
+    GaussianBlur(image_proc, blurred, Size(5, 5), 1.8);
+
     Mat gray0(blurred.size(), CV_8U), gray;
     vector<vector<Point>> contours;
 
     cvtColor(blurred, gray0, CV_BGR2GRAY);
 
-    Canny(gray0, gray, 10, 50, 3);
+    Canny(gray0, gray, 75, 200, 3);
     dilate(gray, gray, Mat(), Point(-1, -1));
     vector<Vec4i> hierarchy;
     findContours(gray, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0));
