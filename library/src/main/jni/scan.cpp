@@ -26,42 +26,40 @@ vector<Point> getPoints(Mat image)
     int width = image.size().width;
     int height = image.size().height;
     double ratio = width / 500.0;
-    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "ratio %f", ratio);
 
     //Mat image_proc = image.clone();
     Mat src1;
     resize(image, src1, Size(width / ratio, height / ratio));
-    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "resized to %d", src1.size().width);
 
     Mat gray, edge, draw;
     Mat blurred(src1);
-
+    
     GaussianBlur(src1, edge, Size(5, 5), 1.8);
     cvtColor(edge, gray, CV_BGR2GRAY);
 
-    Canny(gray, edge, 50, 150, 3);
-
-    vector<vector<Point>> contours;
+    Canny(gray, edge, 10, 50,3);
+    
+    vector<vector<Point> > contours;
     vector<Vec4i> hierarchy;
-    vector<vector<Point>> squares;
+    vector<vector<Point> > squares;
     //findContours(temp, contours, RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
     findContours(edge, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0));
-    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contours  %d", contours.size());
-    
+
     Mat drawing = Mat::zeros(edge.size(), CV_8UC3);
     vector<Point> approx;
     for (int i = 0; i < contours.size(); i++)
     {
+        
         convexHull(contours[i], contours[i]);
-        float area = contourArea(Mat(contours[i]));
+        
         approxPolyDP(Mat(contours[i]), contours[i], arcLength(Mat(contours[i]), true) * 0.02, true);
+        float area = contourArea(Mat(contours[i]));
         if (area > 15000 && contours[i].size() == 4)
         {
-            __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contour points %d", contours[i].size());
             squares.push_back(contours[i]);
         }
     }
-
+//displayContoursOnMat(contours,src1);
     double largest_area = -1;
     int largest_contour_index = 0;
     for (int i = 0; i < squares.size(); i++)
@@ -74,7 +72,6 @@ vector<Point> getPoints(Mat image)
         }
     }
 
-    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "Scaning size() %d", squares.size());
     vector<Point> points;
     if (squares.size() > 0)
     {
@@ -85,7 +82,6 @@ vector<Point> getPoints(Mat image)
             tp.y = tp.y * ratio;
             points.push_back(tp);
         }
-        points = squares[largest_contour_index];
     }
     else
     {
