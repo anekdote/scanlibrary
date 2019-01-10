@@ -54,9 +54,9 @@ vector<Point> getPoints(Mat image)
     for (int i = 0; i < contours.size(); i++)
     {
 
-        convexHull(contours[i], contours[i]);
+        convexHull(contours[i], approx);
 
-        approxPolyDP(Mat(contours[i]), contours[i], arcLength(Mat(contours[i]), true) * 0.02, true);
+        approxPolyDP(Mat(approx), contours[i], arcLength(Mat(contours[i]), true) * 0.02, true);
         float area = contourArea(Mat(contours[i]));
         if (area > 15000 && contours[i].size() == 4)
         {
