@@ -23,6 +23,8 @@ double angle(cv::Point pt1, cv::Point pt2, cv::Point pt0)
 
 vector<Point> getPoints(Mat image)
 {
+    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "Get points started");
+    
     int width = image.size().width;
     int height = image.size().height;
     double ratio = width / 500.0;
@@ -43,7 +45,7 @@ vector<Point> getPoints(Mat image)
     vector<Vec4i> hierarchy;
     vector<vector<Point> > squares;
     findContours(edge, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0));
-
+    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "contour size %d",squares.size());
     vector<Point> approx;
     for (int i = 0; i < contours.size(); i++)
     {
