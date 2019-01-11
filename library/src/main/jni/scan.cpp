@@ -43,7 +43,7 @@ vector<Point> getPoints(Mat image)
 
     cvtColor(blurred, gray0, CV_BGR2GRAY);
 
-    Canny(gray0, gray, 75, 200, 3);
+    Canny(gray0, gray, 30, 100, 3);
     dilate(gray, gray, Mat(), Point(-1, -1));
     vector<Vec4i> hierarchy;
     findContours(gray, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0));
