@@ -17,7 +17,7 @@ packagingOptions{
         versionName "1.0"
         ndk {
             moduleName "Scanner"
-            abiFilters "armeabi-v7a", "x86"
+            abiFilters "armeabi-v7a"
         }
         sourceSets.main {
             jni.srcDirs = []
