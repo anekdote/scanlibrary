@@ -329,12 +329,9 @@ JNIEXPORT jobject JNICALL Java_com_scanlibrary_ScanActivity_getBWBitmap(JNIEnv *
     Mat dst = mbgra.clone();
 
     cvtColor(mbgra, dst, CV_BGR2GRAY);
-    float alpha = -1.2;
-    float beta = 100;
-    dst.convertTo(dst, -1, alpha, beta);
-
+    
     //threshold(dst, dst, 0, 255, THRESH_BINARY | THRESH_OTSU);
-    //adaptiveThreshold(dst,dst,255,ADAPTIVE_THRESH_GAUSSIAN_C,THRESH_BINARY,63,17);
+    adaptiveThreshold(dst,dst,255,ADAPTIVE_THRESH_GAUSSIAN_C,THRESH_BINARY,63,17);
 
     //get source bitmap's config
     jclass java_bitmap_class = (jclass)env->FindClass("android/graphics/Bitmap");

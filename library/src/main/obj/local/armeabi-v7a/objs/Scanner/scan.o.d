@@ -6,9 +6,12 @@
   sdk/native/jni/include/opencv2/core.hpp \
   sdk/native/jni/include/opencv2/core/cvdef.h \
   /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/limits.h \
+  /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/__config \
   sdk/native/jni/include/opencv2/core/hal/interface.h \
   /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/cstddef \
+  /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/version \
   /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/cstdint \
+  /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/stdint.h \
   sdk/native/jni/include/opencv2/core/cv_cpu_dispatch.h \
   /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/array \
   /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/__tuple \
@@ -35,6 +38,7 @@
   /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/cassert \
   /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/atomic \
   /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/functional \
+  /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/bit \
   sdk/native/jni/include/opencv2/core/version.hpp \
   sdk/native/jni/include/opencv2/core/base.hpp \
   /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/climits \
@@ -61,6 +65,7 @@
   sdk/native/jni/include/opencv2/core/fast_math.hpp \
   sdk/native/jni/include/opencv2/core/types.hpp \
   /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/cfloat \
+  /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/float.h \
   /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/vector \
   /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/__bit_reference \
   /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/__split_buffer \
@@ -81,7 +86,9 @@
   /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/ctime \
   /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/ratio \
   /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/system_error \
+  /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/__errc \
   /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/cerrno \
+  /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/errno.h \
   /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/__threading_support \
   /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/locale.h \
   /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/support/android/locale_bionic.h \
@@ -109,6 +116,8 @@
   sdk/native/jni/include/opencv2/dnn/dict.hpp \
   /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/map \
   /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/__tree \
+  /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/__node_handle \
+  /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/optional \
   sdk/native/jni/include/opencv2/dnn/layer.hpp \
   sdk/native/jni/include/opencv2/dnn/dnn.inl.hpp \
   sdk/native/jni/include/opencv2/flann.hpp \
@@ -195,6 +204,8 @@
   sdk/native/jni/include/opencv2/videostab/stabilizer.hpp \
   sdk/native/jni/include/opencv2/videostab/global_motion.hpp \
   /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/fstream \
+  /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/filesystem \
+  /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/stack \
   sdk/native/jni/include/opencv2/videostab/optical_flow.hpp \
   sdk/native/jni/include/opencv2/videostab/motion_core.hpp \
   sdk/native/jni/include/opencv2/videostab/outlier_rejection.hpp \
@@ -221,11 +232,17 @@ sdk/native/jni/include/opencv2/core/cvdef.h:
 
 /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/limits.h:
 
+/Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/__config:
+
 sdk/native/jni/include/opencv2/core/hal/interface.h:
 
 /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/cstddef:
 
+/Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/version:
+
 /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/cstdint:
+
+/Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/stdint.h:
 
 sdk/native/jni/include/opencv2/core/cv_cpu_dispatch.h:
 
@@ -279,6 +296,8 @@ sdk/native/jni/include/opencv2/core/cv_cpu_dispatch.h:
 
 /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/functional:
 
+/Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/bit:
+
 sdk/native/jni/include/opencv2/core/version.hpp:
 
 sdk/native/jni/include/opencv2/core/base.hpp:
@@ -331,6 +350,8 @@ sdk/native/jni/include/opencv2/core/types.hpp:
 
 /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/cfloat:
 
+/Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/float.h:
+
 /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/vector:
 
 /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/__bit_reference:
@@ -371,7 +392,11 @@ sdk/native/jni/include/opencv2/core/cvstd.inl.hpp:
 
 /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/system_error:
 
+/Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/__errc:
+
 /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/cerrno:
+
+/Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/errno.h:
 
 /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/__threading_support:
 
@@ -426,6 +451,10 @@ sdk/native/jni/include/opencv2/dnn/dict.hpp:
 /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/map:
 
 /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/__tree:
+
+/Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/__node_handle:
+
+/Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/optional:
 
 sdk/native/jni/include/opencv2/dnn/layer.hpp:
 
@@ -598,6 +627,10 @@ sdk/native/jni/include/opencv2/videostab/stabilizer.hpp:
 sdk/native/jni/include/opencv2/videostab/global_motion.hpp:
 
 /Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/fstream:
+
+/Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/filesystem:
+
+/Users/brian/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/stack:
 
 sdk/native/jni/include/opencv2/videostab/optical_flow.hpp:
 
