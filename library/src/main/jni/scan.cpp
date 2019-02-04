@@ -330,7 +330,7 @@ JNIEXPORT jobject JNICALL Java_com_scanlibrary_ScanActivity_getBWBitmap(JNIEnv *
 
     cvtColor(mbgra, dst, CV_BGR2GRAY);
     float alpha = 1.5;
-    float beta = 20;
+    float beta = 50;
     dst.convertTo(dst, -1, alpha, beta);
 
     //threshold(dst, dst, 0, 255, THRESH_BINARY | THRESH_OTSU);
