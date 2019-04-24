@@ -28,7 +28,7 @@ public class Utils {
 
     public static Bitmap getBitmap(Context context, Uri uri) throws IOException {
         Bitmap bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), uri);
-        Bitmap scaled = scaleToSize(bitmap,2560);
+        Bitmap scaled = scaleToSize(bitmap,4096);
         return scaled;
     }
 

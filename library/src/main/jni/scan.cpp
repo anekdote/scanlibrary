@@ -25,7 +25,7 @@ vector<Point> getPoints(Mat image)
 {
     int width = image.size().width;
     int height = image.size().height;
-    double ratio = width / 200.0;
+    double ratio = width / 500.0;
     __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "ratio %f", ratio);
 
     //Mat image_proc = image.clone();
